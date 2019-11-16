@@ -1,0 +1,7 @@
+import re
+n=int(input())
+com='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+for i in range(0,n):
+    s=input()
+    if(re.search(com,s)):
+        print(s)

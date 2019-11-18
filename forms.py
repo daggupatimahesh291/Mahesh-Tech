@@ -1,6 +1,6 @@
 from django import forms  
-from employee.models import Employee  
+from note.models import note
 class EmployeeForm(forms.ModelForm):  
     class Meta:  
-        model = Employee  
+        model = note
         fields = "__all__"  

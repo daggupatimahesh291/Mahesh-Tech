@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect  
-from employee.forms import EmployeeForm  
-from employee.models import Employee  
+from note.forms import noteForm  
+from note.models import Note  
 # Create your views here.  
 def emp(request):  
     if request.method == "POST":  
-        form = EmployeeForm(request.POST)  
+        form = noteForm(request.POST)  
         if form.is_valid():  
             try:  
                 form.save()  
@@ -12,22 +12,22 @@ def emp(request):
             except:  
                 pass  
     else:  
-        form = EmployeeForm()  
+        form = noteForm()  
     return render(request,'index.html',{'form':form})  
 def show(request):  
-    employees = Employee.objects.all()  
-    return render(request,"show.html",{'employees':employees})  
+    note = Note.objects.all()  
+    return render(request,"show.html",{'note':note})  
 def edit(request, id):  
-    employee = Employee.objects.get(id=id)  
-    return render(request,'edit.html', {'employee':employee})  
+    note = Note.objects.get(id=id)  
+    return render(request,'edit.html', {'note':note)  
 def update(request, id):  
-    employee = Employee.objects.get(id=id)  
-    form = EmployeeForm(request.POST, instance = employee)  
+    note =Note.objects.get(id=id)  
+    form = noteForm(request.POST, instance = note)  
     if form.is_valid():  
         form.save()  
         return redirect("/show")  
-    return render(request, 'edit.html', {'employee': employee})  
+    return render(request, 'edit.html', {'note': note})  
 def destroy(request, id):  
-    employee = Employee.objects.get(id=id)  
-    employee.delete()  
+    note = Note.objects.get(id=id)  
+    note.delete()  
     return redirect("/show")  
